@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background: black;
+        }
+
+        .box {
+            padding: 1rem;
+            border: 4px dotted white;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .grid img {
+            width: 100%;
+            height: auto;
+            border: 1px solid white;
+            padding: 10px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: black;
+            height: 100vh;
+            width: 100%;
+            z-index: 100;
+            display: none;
+        }
+
+        .popup img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 5px solid white;
+            width: 70%;
+            height: auto;
+        }
+
+        .popup span {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            color: white;
+            cursor: pointer;
+            z-index: 100;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="grid">
+                <img src="./imgs/1.jpg" alt="birds">
+                <img src="./imgs/2.jpg" alt="birds">
+                <img src="./imgs/3.jpg" alt="birds">
+                <img src="./imgs/4.jpg" alt="birds">
+                <img src="./imgs/5.jpg" alt="birds">
+                <img src="./imgs/6.jpg" alt="birds">
+                <img src="./imgs/7.jpg" alt="birds">
+                <img src="./imgs/8.jpg" alt="birds">
+            </div>
+
+            <div class="popup">
+                <span>X</span>
+                <img src="./imgs/1.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll(".grid img").forEach(image => {
+            image.onclick = () => {
+                document.querySelector(".popup").style.display = "block";
+                document.querySelector(".popup img").src = image.getAttribute('src');
+            }
+        });
+
+        document.querySelector(".popup span").onclick = () => {
+            document.querySelector(".popup").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
